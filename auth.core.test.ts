@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeAll } from 'vitest';
-import request from 'supertest';
+import { coreRequest } from './auth.test.utils.js';
 import createApp from '../../../app.js';
 import type { Express } from 'express';
 
@@ -11,7 +11,7 @@ describe('Auth Core Module', () => {
   });
 
   it('should have a register endpoint in core', async () => {
-    const response = await request(app)
+    const response = await coreRequest(app)
       .post('/api/auth/register')
       .send({ email: 'core@example.com', password: 'password123' });
     
@@ -20,7 +20,7 @@ describe('Auth Core Module', () => {
   });
 
   it('should have a login endpoint in core', async () => {
-    const response = await request(app)
+    const response = await coreRequest(app)
       .post('/api/auth/login')
       .send({ email: 'core@example.com', password: 'password123' });
     
